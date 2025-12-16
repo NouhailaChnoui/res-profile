@@ -7,11 +7,13 @@ function validateForm() {
         alert("Please fill out all required fields!");
         return false;
     }
+
     let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
     if (!emailPattern.test(email)) {
         alert("Please enter a valid email address");
         return false;
     }
+
     return true;
 }
 
@@ -19,7 +21,6 @@ let profiles = [];
 
 document.getElementById("profileForm").addEventListener("submit", function(event){
     event.preventDefault(); 
-
     if(!validateForm()) return;
 
     let profile = {
@@ -32,18 +33,28 @@ document.getElementById("profileForm").addEventListener("submit", function(event
 
     profiles.push(profile);
     updateTable();
-    this.reset(); 
+    this.reset();
 });
 
 function updateTable() {
     let tbody = document.getElementById("profilesTable").getElementsByTagName("tbody")[0];
-    tbody.innerHTML = ""; 
-    profiles.forEach(p => {
+    tbody.innerHTML = "";
+
+    profiles.forEach((p, index) => {
         let row = tbody.insertRow();
         row.insertCell(0).innerText = p.first_name;
         row.insertCell(1).innerText = p.last_name;
         row.insertCell(2).innerText = p.email;
         row.insertCell(3).innerText = p.headline;
         row.insertCell(4).innerText = p.summary;
+
+        let delCell = row.insertCell(5);
+        let delBtn = document.createElement("button");
+        delBtn.innerText = "Delete";
+        delBtn.onclick = () => { 
+            profiles.splice(index, 1); 
+            updateTable(); 
+        };
+        delCell.appendChild(delBtn);
     });
 }
