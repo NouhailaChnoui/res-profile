@@ -1,22 +1,44 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Mini CRUD Profils</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js"></script>
+    <title>Nouhaila Chnoui</title>
+    <script src="script.js"></script> 
 </head>
 <body>
-    <h1>Gestion des Profils</h1>
+    <h1> Profile Form</h1>
+    <form id="profileForm" onsubmit="return validateForm()">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name"><br><br>
 
-    <form id="profileForm">
-        Nom: <input type="text" id="name" required><br>
-        Email: <input type="email" id="email" required><br>
-        <button type="submit">Ajouter</button>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br><br>
+
+        <label for="headline">Headline:</label>
+        <input type="text" id="headline" name="headline"><br><br>
+
+        <label for="summary">Summary:</label><br>
+        <textarea id="summary" name="summary" rows="5" cols="40"></textarea><br><br>
+
+        <input type="submit" value="Add Profile">
     </form>
 
-    <h2>Liste des profils</h2>
-    <ul id="profileList"></ul>
+    <h2>Profiles List</h2>
+    <table border="1" id="profilesTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Headline</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </body>
 </html>
